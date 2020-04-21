@@ -1,7 +1,6 @@
-# Data-Cleaning
-1.DATA PREPERATION
+#1.DATA PREPERATION
 
-1.1 STRUCTUR THE COLUMNS
+##1.1 STRUCTUR THE COLUMNS
  
 The structure of initial data does not make much sense. There are few issues that catches attention on the surface:
 1.	The column headings do not make much sense.
@@ -14,7 +13,7 @@ Solution: To tackle the above stated problem, I renamed all the columns in a con
 To structure the columns properly I removed the 1st row with index [0] and preserved the options in a dictionary called options.
    Result
 
-1.2 UNNECESSARY OBSERVATIONS
+##1.2 UNNECESSARY OBSERVATIONS
 
 Going a little bit further in my analysis I noticed a trend that any respondent who have not answered the Q2 have not answered rest of the questions as well, so all the columns contains NaN.
   
@@ -25,32 +24,32 @@ Solution: A straight up elimination of all these observations were done as they 
 
 Before going any further in our analysis, I took a step and made a subset of responses containing Q1 as Yes and named new dataframe as df_yes. As stated above responses with Q2 as NaN does not contain any other information except demographics. Rest of the responses is still kept in original dataframe to be used in further analysis.
 
-1.3 WHITESPACES
+##1.3 WHITESPACES
 
 I took a strategy of scanning the data column wise to look for potential errors and problems. Only column Q1 came out as containing whitespaces in some of its observation. With values  
 ‘Yes’ and ‘Yes’ both present in the same column.
 
 Solution: A simple str.strip() took out all the unnecessary whitespaces from the column.
 
-1.4 TYPOS
+##1.4 TYPOS
 
 Q2, Q8 ,Q9 and Gender columns had typographical errors which was creating an issue  of                   .  Solution: I used a simple method in all of these cases taking example of of the above stated problem in column Q9. I defined a dictionary with key as typos and values as the desired outcome of typos and used it with a .replce() for example : df_yes['Q9'].replace({'yes':'Yes','Noo':'No'})
 
-1.5 CHANGING DATATYPES
+##1.5 CHANGING DATATYPES
 
 a)	Q3/O1-Q3/O6 contains responses for Q3(which addresses wether or not respondent have watched the particular movie column is representing) contains name of the movie if the respondent answered yes and a NaN otherwise.
 b)	Q4/O1-Q4/O6 contains ratings for different movies of the franchise but datatype of each column comes up as object which is needed to be changed to int. 
 
 Solution: To address 1st problem I and to make data more presentable I wrote a function impute_val to impute 1 in place of a yes response and 0 otherwise. To address the 2nd issue .astype(int) is used.
 
-1.6 SANITY CHECK
+##1.6 SANITY CHECK
 
 While analyzing Age column an observation came up which contained an observation of Age as 500
 
 Solution: Since, from all the possible solutions to treat this extreme value like imputing it with a mode(as column is categoric) removing it altogether as it provides misleading information was a logical choice.
 
 
-1.7 MISSING VALUE
+##1.7 MISSING VALUE
 
 Two different approaches were implemented to treat missing values at two different situation.
 
@@ -71,7 +70,7 @@ Conclusion:
 After doing all our pre-processing the original dataset reduced by a 16.76% and what’s left is a clean dataset.
 
 
-3.	DATA EXPLORATION
+#3.	DATA EXPLORATION
 
 
 
@@ -85,11 +84,11 @@ After doing all our pre-processing the original dataset reduced by a 16.76% and 
  
 Figure1:average rating of movie
 
-2.1 EXPLORING RATING OF MOVIES
+##2.1 EXPLORING RATING OF MOVIES
 
 Fig 1 shows average rating of movies in the franchise and an increasing trend can be clearly seen till the 3rd movie of the franchise after which ratings started improving drastically. Fig 2 corroborate the first conclusion as it can be clearly seen that the 5th movie in the franchise received most number of top rating.
 
-2.2 RELATIONSHIP BETWEEN COLUMN
+##2.2 RELATIONSHIP BETWEEN COLUMN
 1.	Ho: The distribution of respondents who have watch or have not watched movies from Star Wars franchise is same among different genders.
 Ha: The distribution of respondents who have watch or have not watched movies from Star Wars franchise is not same among different genders.
 
@@ -135,7 +134,7 @@ Ha: The distribution of respondents among different genders have different respo
  
  
 
-2.3.	 RELATIONSHIP BETWEEN DEMOGRAPHICS AND CHARACTERS
+##2.3.	 RELATIONSHIP BETWEEN DEMOGRAPHICS AND CHARACTERS
 
 To explore the relationship between demographics of people and their attitude towards characters in the franchise I had to take a different approach because to do so a large number of comparisons between various variables need to be done. 
 
